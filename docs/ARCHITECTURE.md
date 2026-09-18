@@ -55,9 +55,9 @@ interfaces mid-work.
 
 ## Recommended Approach
 
-```
+```text
 BossHunter/
-  BossHunterApp.swift        # entry, creates GameState
+  BossHunterApp.swift        # entry, launches ContentView
   Models/
     Boss.swift               # struct: level, maxHP, currentHP, reward
     Unit.swift               # struct: baseDPS, baseCost, ownedCount
@@ -67,7 +67,7 @@ BossHunter/
     GameState.swift           # @Observable: state + tap(), buyUnit(),
                              # upgradeTap(), advanceLevel(), tick()
   Views/
-    ContentView.swift         # owns GameState, composes BossView + ShopView
+    ContentView.swift         # initializes and owns GameState via `@State`
     BossView.swift            # boss display, HP bar, tap target
     ShopView.swift            # units list + tap upgrade, buy buttons
 ```
@@ -115,8 +115,9 @@ MVVM guidelines:
   grows, split persistence into a `GameStore` type — no View changes needed.
 - Risk: timer-based DPS drains battery or drifts. Mitigation: 1s coarse timer,
   compute damage from elapsed wall time rather than tick count.
-- Rollback: each work unit is additive new files (existing `ContentView` is only
-  rewired in unit 3); a unit can be reverted by deleting its files.
+- Rollback: each work unit is additive new files, except unit 3 rewires the
+  existing `ContentView`; revert a unit by deleting its files and restoring any
+  modified existing files to their pre-unit state.
 
 ## Open Questions
 

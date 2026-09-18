@@ -12,7 +12,7 @@
 
 <!-- Commands or manual steps that verify this PR. -->
 
-- [ ] <!-- e.g. Build in Xcode (⌘B), run BossHunterTests -->
+- [ ] Tests run: <!-- e.g. Build in Xcode (⌘B), run BossHunterTests -->
 
 ## Checklist
 
