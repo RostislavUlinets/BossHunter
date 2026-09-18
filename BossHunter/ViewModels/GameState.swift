@@ -23,6 +23,7 @@ final class GameState: ObservableObject {
     }
 
     func addGold(_ amount: Int) {
+        guard amount >= 0, gold <= Int.max - amount else { return }
         gold += amount
         save()
     }
@@ -30,7 +31,7 @@ final class GameState: ObservableObject {
     /// Spends gold when affordable. Returns whether the purchase succeeded.
     @discardableResult
     func spendGold(_ amount: Int) -> Bool {
-        guard amount <= gold else { return false }
+        guard amount >= 0, amount <= gold else { return false }
         gold -= amount
         save()
         return true
