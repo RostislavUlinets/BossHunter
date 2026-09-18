@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var gameState = GameState()
+
     var body: some View {
         VStack(spacing: 16) {
             topBar
@@ -21,7 +23,7 @@ struct ContentView: View {
     private var topBar: some View {
         VStack {
             HStack {
-                Text("Gold: 0")
+                Text("Gold: \(gameState.gold)")
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(.gray.opacity(0.2))
